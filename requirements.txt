@@ -1,0 +1,5 @@
+yfinance
+streamlit
+plotly-express
+pandas
+#apache-airflow
