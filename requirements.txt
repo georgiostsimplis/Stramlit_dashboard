@@ -1,6 +1,6 @@
 yfinance
 streamlit
-plotly-express
+plotly==5.17.0
 pandas
 datetime
 pytz
