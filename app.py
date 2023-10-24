@@ -38,14 +38,14 @@ volatility = df_ret.std()
 cumulative_returns = calculate_cumulative_returns(df)
 
 fig_cum = px.bar(x=cumulative_returns.index, y=cumulative_returns.values, labels={"x": "Stocks", "y": "Cumulative Returns (%)"},
-             title="Cumulative Returns for Each Stock",
+             title="Cumulative Returns for Each Stock (3 months)",
              color_discrete_sequence=['green'])
 
 # Customize the layout (optional)
 fig_cum.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15),width =350, height =400)
 
 fig_vol = px.bar(x=volatility.index, y=volatility.values, labels={"x": "Stocks", "y": "Volatility"},
-             title="Volatility for Each Stock",
+             title="Volatility for Each Stock  (3 months)",
              color_discrete_sequence=['orange'])
 
 # Customize the layout (optional)
@@ -65,7 +65,7 @@ fig_pr.update_layout(legend_title_text='Stocks', width =500, height =400)
 fig = make_subplots(rows=2, cols=3)
 
 # Add scatter plots for each stock to the subplots
-for i, stock in enumerate(stocks):
+for i, stock in enumerate(selected_stocks):
     row = (i // 3) + 1  # Determine the row based on the index
     col = (i % 3) + 1   # Determine the column based on the index
     
