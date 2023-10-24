@@ -28,17 +28,17 @@ df_monthly_ret = df.resample('M').ffill().pct_change()
 volatility = df_ret.std()
 cumulative_returns = calculate_cumulative_returns(df)
 
-fig_cum = px.bar(x=cumulative_returns.index, y=cumulative_returns.values, labels={"x": "Stocks", "y": "Cumulative Returns (%)"})#,
-             #title="Cumulative Returns for Each Stock")
+fig_cum = px.bar(x=cumulative_returns.index, y=cumulative_returns.values, labels={"x": "Stocks", "y": "Cumulative Returns (%)"},
+             title="Cumulative Returns for Each Stock")
 
 # Customize the layout (optional)
-fig_cum.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15),width =500, height =400)
+fig_cum.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15),width =400, height =400)
 
-fig_vol = px.bar(x=volatility.index, y=volatility.values, labels={"x": "Stocks", "y": "Volatility"})#,
-             #title="Volatility for Each Stock")
+fig_vol = px.bar(x=volatility.index, y=volatility.values, labels={"x": "Stocks", "y": "Volatility"},
+             title="Volatility for Each Stock")
 
 # Customize the layout (optional)
-fig_vol.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15), width =500, height =400)
+fig_vol.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15), width =400, height =400)
 
 fig_pr = px.line(df, x=df.index, y=df.columns, title='Stock Prices Over Time')
 fig_pr.update_xaxes(title_text='Date')
@@ -66,10 +66,10 @@ with left_column:
         st.subheader("Monthly Returns")
         st.dataframe(df_monthly_ret)
 with middle_column:
-    st.subheader("Cumulative Return for each stock:")
+    #st.subheader("Cumulative Return for each stock:")
     st.plotly_chart(fig_cum)
 with right_column:
-    st.subheader("Volatility for each stock:")
+    #st.subheader("Volatility for each stock:")
     st.plotly_chart(fig_vol)
 
 st.markdown('---')
