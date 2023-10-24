@@ -2,7 +2,7 @@ name: Daily Streamlit Dashboard Update
 
 on:
   schedule:
-    - cron: '06 16 * * *'  # Schedule the workflow to run every day at midnight UTC.
+    - cron: '* * * * *'  # Schedule the workflow to run every day at midnight UTC.
 
 jobs:
   build:

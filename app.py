@@ -6,9 +6,14 @@ from financial_functions import calculate_cumulative_returns
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
+import pytz
 
 st.set_page_config(page_title="Stocks Dashboard", page_icon=":bar_chart:", layout="wide")
-current_datetime = datetime.datetime.now()
+
+copenhagen_timezone = pytz.timezone('Europe/Copenhagen')
+
+# Get the current date and time in the Copenhagen time zone
+current_datetime_copenhagen = datetime.datetime.now(copenhagen_timezone)
 
 
 # Create a sidebar for filters
@@ -21,7 +26,7 @@ with st.sidebar:
 
 st.title(":bar_chart: Financial Data Dashboard")
 st.markdown("Created by [Georgios Tsimplis](https://www.linkedin.com/in/georgios-tsimplis)")
-st.markdown(f"Last update: {current_datetime} ")
+st.markdown(f"Last update: {current_datetime_copenhagen}, DK Timezone")
 
 data = yf.download(selected_stocks, period="3mo")
 df = data.Close
