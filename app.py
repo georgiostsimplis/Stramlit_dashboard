@@ -32,13 +32,13 @@ fig_cum = px.bar(x=cumulative_returns.index, y=cumulative_returns.values, labels
              title="Cumulative Returns for Each Stock")
 
 # Customize the layout (optional)
-fig_cum.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15),width =400, height =400)
+fig_cum.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15),width =350, height =400)
 
 fig_vol = px.bar(x=volatility.index, y=volatility.values, labels={"x": "Stocks", "y": "Volatility"},
              title="Volatility for Each Stock")
 
 # Customize the layout (optional)
-fig_vol.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15), width =400, height =400)
+fig_vol.update_layout(xaxis_title_font=dict(size=15), yaxis_title_font=dict(size=15), width =350, height =400)
 
 fig_pr = px.line(df, x=df.index, y=df.columns, title='Stock Prices Over Time')
 fig_pr.update_xaxes(title_text='Date')
