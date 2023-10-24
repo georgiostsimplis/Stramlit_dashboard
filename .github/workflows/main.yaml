@@ -2,7 +2,7 @@ name: Daily Streamlit Dashboard Update
 
 on:
   schedule:
-    - cron: '51 16 * * *'  # Schedule the workflow to run every day at midnight UTC.
+    - cron: '06 16 * * *'  # Schedule the workflow to run every day at midnight UTC.
 
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
         pip install -r requirements.txt  # If you have any Python dependencies
 
     - name: Run Streamlit App
-      run: python app.py  # Replace with the correct command to run your Streamlit app
+      run: streamlit run app.py  # Replace with the correct command to run your Streamlit app
 
     # - name: Deploy to Streamlit Server
     #   run: |
