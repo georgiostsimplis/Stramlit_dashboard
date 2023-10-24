@@ -5,8 +5,11 @@ import streamlit as st
 from financial_functions import calculate_cumulative_returns
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import datetime
 
 st.set_page_config(page_title="Stocks Dashboard", page_icon=":bar_chart:", layout="wide")
+current_datetime = datetime.datetime.now()
+
 
 # Create a sidebar for filters
 with st.sidebar:
@@ -18,7 +21,7 @@ with st.sidebar:
 
 st.title(":bar_chart: Financial Data Dashboard")
 st.markdown("Created by [Georgios Tsimplis](https://www.linkedin.com/in/georgios-tsimplis)")
-st.markdown(" ")
+st.markdown(f"Last update: {current_datetime} ")
 
 data = yf.download(selected_stocks, period="3mo")
 df = data.Close

@@ -2,4 +2,5 @@ yfinance
 streamlit
 plotly-express
 pandas
+datetime
 #apache-airflow
