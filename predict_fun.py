@@ -4,10 +4,10 @@ import yfinance as yf
 import pandas as pd
 
 def pre_fut(name):
-    stocks = ["NVDA", "MSFT", "AMZN", "GOOGL", "META"]
-    data = yf.download(stocks, period="2y")
+    #stocks = ["NVDA", "MSFT", "AMZN", "GOOGL", "META"]
+    data = yf.download(name, period="2y")
     df = data.Close
-    a = pd.DataFrame({'ds':df.index, 'y':df[name]}).reset_index().drop(columns = 'Date')
+    a = pd.DataFrame({'ds':df.index, 'y':df.values}).reset_index()#.drop(columns = 'Date')
     model = Prophet(changepoint_prior_scale=0.3, daily_seasonality=False)
     model.add_seasonality(name='weekly', period=5, fourier_order= 3)
     model.add_seasonality(name='monthly', period=21, fourier_order= 5)
