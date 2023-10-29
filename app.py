@@ -7,6 +7,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import datetime
 from predict_fun import pre_fut
+import numpy as np
 import pytz
 
 st.set_page_config(page_title="Stocks Dashboard", page_icon=":bar_chart:", layout="wide")
@@ -38,7 +39,7 @@ df = data.Close
 df_ret = df.pct_change(1)
 df_monthly_ret = df.resample('M').ffill().pct_change()
 
-volatility = df.std()
+volatility = df_ret.std()*np.sqrt(252)
 cumulative_returns = calculate_cumulative_returns(df)
 
 if len(selected_stocks)>1:
@@ -51,7 +52,7 @@ if len(selected_stocks)>1:
 
 if len(selected_stocks)>1:
     fig_vol = px.bar(x=volatility.index, y=volatility.values, labels={"x": "Stocks", "y": "Volatility"},
-                title="Daily Volatility for Each Stock",
+                title="Annualized Volatility for Each Stock",
                 color_discrete_sequence=['orange'])
 
     # Customize the layout (optional)
@@ -132,9 +133,9 @@ st.markdown("## Metrics")
 cols = st.columns(number_of_stocks)
 if len(selected_stocks)>1:
     for j,each_stock in enumerate(selected_stocks):
-        cols[j].metric("Today's performance", diff_data_sorted.index[j], str(round(diff_data_sorted[j], 6)*100) + "%")
+        cols[j].metric("Today's performance", diff_data_sorted.index[j], "{:.4f}".format(round(float(diff_data_sorted[j]), 6)*100) + "%")
 else:
-    cols[0].metric("Today's performance", selected_stocks[0], str(round(diff_data_sorted, 6)*100) + "%")
+    cols[0].metric("Today's performance", selected_stocks[0], "{:.4f}".format(round(float(diff_data_sorted), 6)*100) + "%")
 st.markdown("*Indicates the percentage change between the Open Price and the Close/Current Price")
 st.markdown("___")
 
@@ -180,7 +181,7 @@ with left_column1:
         st.plotly_chart(fig_vol)
     else:
         col__ = st.columns(1)
-        col__[0].metric("Volatility ", selected_stocks[0], volatility)
+        col__[0].metric("Annualized Volatility ", selected_stocks[0], volatility)
 with right_column1:
     #st.subheader("Total Sales:")
     st.plotly_chart(fig)

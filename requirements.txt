@@ -2,6 +2,7 @@ yfinance
 streamlit
 plotly==5.17.0
 pandas
+numpy
 datetime
 pytz
 prophet
