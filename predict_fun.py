@@ -19,7 +19,7 @@ def pre_fut(name):
     fig = plot_plotly(model, forecast)
     fig.update_traces(
     line=dict(color='red'),  # Change the line color
-    marker=dict(color='white'),  # Change the marker color
+    marker=dict(color='green'),  # Change the marker color
 )
     fig.update_layout(
         title='One month prediction - {}'.format(name),
